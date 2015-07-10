@@ -1,5 +1,5 @@
 // public/js/appRoutes.js
-    angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    angular.module('appRoutes', ['ngRoute']).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
     $routeProvider
 
@@ -9,9 +9,8 @@
             controller: 'MainController'
         })
 
-        // nerds page that will use the NerdController
-        .when('/nerds', {
-            templateUrl: 'views/nerd.html',
+         .when('/candles/:time/:code', {
+            templateUrl: 'views/candles.html',
             controller: 'NerdController'
         });
 

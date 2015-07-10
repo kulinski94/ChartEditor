@@ -1,7 +1,14 @@
 <!-- public/views/home.html -->
-
 <div class="jumbotron text-center">
     <h1>Home Page 4 Life</h1>
 
-    <p>{{ tagline }}</p>
+    <form action="/candles" method="get">
+time:<br>
+        <input type="text" name="time" value="2015-07-10T15:30:00.0+03:00">
+        <br>
+code:<br>
+        <input type="text" name="code" value="USDBGN">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
 </div>
