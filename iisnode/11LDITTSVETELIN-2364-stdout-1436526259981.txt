@@ -1,0 +1,19 @@
+Options prepared:
+{ host: 'graph.facebook.com',
+  port: 443,
+  path: '/youscada',
+  method: 'GET' }
+Do the GET call
+Options prepared:
+{ host: 'graph.facebook.com',
+  port: 443,
+  path: '/youscada/feed?access_token=your_api_key',
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json', 'Content-Length': 361 } }
+Do the POST call
+Options prepared:
+{ host: 'graph.facebook.com',
+  port: 443,
+  path: '/youscada/feed?access_token=you_api_key',
+  method: 'GET' }
+Do the GET call
