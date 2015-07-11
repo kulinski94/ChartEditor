@@ -29,7 +29,7 @@
                 <td><input class="form-control" ng-model="candle.ask.low"></td>
                 <td><input class="form-control" ng-model="candle.ask.close"></td>
             </tr>
-             <tr>
+            <tr>
                 <td><input class="form-control" ng-model="candle.birthTime"></td>
                 <td><input class="form-control" ng-model="candle.ask.open"></td>
                 <td><input class="form-control" ng-model="candle.ask.high"></td>
@@ -43,7 +43,7 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Time</th>
+                <th>TYPE</th>
                 <th>open</th>
                 <th>high</th>
                 <th>low</th>
@@ -51,20 +51,24 @@
                 <th>&nbsp;</th>
             </tr>
                 </thead>
-            <tbody ng-repeat="candle in candleList" >
+            <tbody ng-repeat="candle in candleList">
             <tr>
-                <td>{{candle.birthTime }}</td>
+                <td>BirthTime : {{candle.birthTime}}</td>
+                <td>Volume : {{candle.volume }}</td>
+            </tr>
+            <tr>
+                <td>ASK:</td>
                 <td>{{candle.ask.open}}</td>
                 <td>{{candle.ask.high}}</td>
                 <td>{{candle.ask.low}}</td>
                 <td>{{candle.ask.close}}</td>
             </tr>
-                <tr>
-                <td>{{candle.birthTime }}</td>
-                <td>{{candle.ask.open}}</td>
-                <td>{{candle.ask.high}}</td>
-                <td>{{candle.ask.low}}</td>
-                <td>{{candle.ask.close}}</td>
+            <tr>
+                <td>BID:</td>
+                <td>{{candle.bid.open}}</td>
+                <td>{{candle.bid.high}}</td>
+                <td>{{candle.bid.low}}</td>
+                <td>{{candle.bid.close}}</td>
                 <td><button class="btn btn-warning" ng-click="edit(candle.birthTime)">Edit</button></td>
             </tr>
             </tbody>
