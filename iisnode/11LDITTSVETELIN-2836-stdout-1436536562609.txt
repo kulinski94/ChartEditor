@@ -1,2 +1,0 @@
-{ [Error: Cannot find module '../build/Release/bson'] code: 'MODULE_NOT_FOUND' }
-Magic happens on port \\.\pipe\9af451ce-3b6d-49cf-8725-65f2898a31b6

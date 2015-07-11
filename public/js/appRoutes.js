@@ -1,5 +1,5 @@
 // public/js/appRoutes.js
-    angular.module('appRoutes', ['ngRoute']).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
     $routeProvider
 
@@ -9,7 +9,7 @@
             controller: 'MainController'
         })
 
-         .when('/candles/:time/:code', {
+         .when('/candles', {
             templateUrl: 'views/candles.html',
             controller: 'NerdController'
         });
