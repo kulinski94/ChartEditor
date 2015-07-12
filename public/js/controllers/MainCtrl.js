@@ -22,23 +22,21 @@ angular.module('MainCtrl', ['ui.bootstrap']).controller('MainController', functi
         , bid: { open: "", close: "", high: "", low: "" }, volume: ""
         };
         $scope.candleList = angular.fromJson(data);
+
+        for (i = 0; i < $scope.candleList.length; i++) {
+            $scope.candleList[i].birthTime = new Date($scope.candleList[i].birthTime);
+        }
         $scope.code = code;
     });
     }
 
     $scope.edit = function (time) {
-        $http.get("https://demo.trading212.com/charting/rest/candles/EURUSD/ONE_MINUTE")
-    .success(function (data, status, headers, config) {
-        console.log("I got the data I requested");
-        var list = angular.fromJson(data);
-
-        for (i = 0; i < list.length; i++) {
-            if (list[i].birthTime == time) {
-                $scope.candle = list[i];
+        for (i = 0; i < $scope.candleList.length; i++) {
+            if ($scope.candleList[i].birthTime == time) {
+                $log.log('edit : ' + $scope.candle);
+                $scope.candle = $scope.candleList[i];
             }
         }
-
-    });
     }
 
 
@@ -63,7 +61,7 @@ angular.module('MainCtrl', ['ui.bootstrap']).controller('MainController', functi
             return value.toISOString();
         }
     }
-   
+
 
     function convertToString(candle) {
         candle.ask.open = candle.ask.open.toString();
