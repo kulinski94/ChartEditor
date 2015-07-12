@@ -5,37 +5,55 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Time</th>
                 <th>Code</th>
-                <th>&nbsp;</th>
+                <th>FROM</th>
+                <th>TO</th>
             </tr>
       </thead>
             <tbody>
             <tr>
-                <td><input class="form-control" ng-model="data.time"></td>
-                <td><input class="form-control" ng-model="data.code"></td>
-                <td><button class="btn btn-info" ng-click="get()">Search</button>
+                <td><input class="form-control" ng-model="code"></td>
+                <td><input class="form-control" ng-model="from"></td>
+                <td><input class="form-control" ng-model="to"></td>
+                <td><button class="btn btn-info" ng-click="get(code,from,to)">Search</button>
             </tr>
 
       </tbody>
         </table>
 
         <table class="table">
+            <thead>
+            <tr>
+                <th>TYPE</th>
+                <th>open</th>
+                <th>high</th>
+                <th>low</th>
+                <th>close</th>
+                <th>&nbsp;</th>
+            </tr>
+                </thead>
             <tbody>
             <tr>
-                <td><input class="form-control" ng-model="candle.birthTime"></td>
+                <td>BirthTime : {{candle.birthTime}}</td>
+                <td>Volume:<input type="number" class="form-control" ng-model="candle.volume"></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>ASK:</td>
                 <td><input class="form-control" ng-model="candle.ask.open"></td>
                 <td><input class="form-control" ng-model="candle.ask.high"></td>
                 <td><input class="form-control" ng-model="candle.ask.low"></td>
                 <td><input class="form-control" ng-model="candle.ask.close"></td>
             </tr>
             <tr>
-                <td><input class="form-control" ng-model="candle.birthTime"></td>
-                <td><input class="form-control" ng-model="candle.ask.open"></td>
-                <td><input class="form-control" ng-model="candle.ask.high"></td>
-                <td><input class="form-control" ng-model="candle.ask.low"></td>
-                <td><input class="form-control" ng-model="candle.ask.close"></td>
-                <td><button class="btn btn-info" ng-click="update()">update</button>
+                <td>BID:</td>
+                <td><input class="form-control" ng-model="candle.bid.open"></td>
+                <td><input class="form-control" ng-model="candle.bid.high"></td>
+                <td><input class="form-control" ng-model="candle.bid.low"></td>
+                <td><input class="form-control" ng-model="candle.bid.close"></td>
+                <td><button class="btn btn-info" ng-click="update(candle)">update</button>
             </tr>
             </tbody>
         </table>
