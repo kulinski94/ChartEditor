@@ -1,96 +1,167 @@
 <!-- public/views/home.html -->
 <div class="jumbotron text-center">
-    <div class="container" ng-controller="MainController">
-        <h1>Search wrong candle</h1>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Code</th>
-                <th>FROM</th>
-                <th>TO</th>
-            </tr>
+
+    <div style="display:inline-block; min-height:290px;">
+        <datepicker ng-model="fromDate" ng-change="changed()" min-date="minDate" show-weeks="true" class="well well-sm" custom-class="getDayClass(date, mode)"></datepicker>
+        <timepicker ng-model="fromTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+    </div>
+    <div style="display:inline-block; min-height:290px;">
+        <datepicker ng-model="toDate" ng-change="changed()" min-date="minDate" show-weeks="true" class="well well-sm" custom-class="getDayClass(date, mode)"></datepicker>
+        <timepicker ng-model="toTime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Code</th>
+            <th>FROM</th>
+            <th>TO</th>
+        </tr>
       </thead>
-            <tbody>
-            <tr>
-                <td><input class="form-control" ng-model="code"></td>
-                <td><input class="form-control" ng-model="from"></td>
-                <td><input class="form-control" ng-model="to"></td>
-                <td><button class="btn btn-info" ng-click="get(code,from,to)">Search</button>
-            </tr>
+        <tbody>
+        <tr>
+            <td><input class="form-control" ng-model="code"></td>
+            <td><input class="form-control" ng-model="from"></td>
+            <td><input class="form-control" ng-model="to"></td>
+            <td><button class="btn btn-info" ng-click="get(code,from,to)">Search</button>
+        </tr>
 
       </tbody>
-        </table>
+    </table>
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th>TYPE</th>
-                <th>open</th>
-                <th>high</th>
-                <th>low</th>
-                <th>close</th>
-                <th>&nbsp;</th>
-            </tr>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>TYPE</th>
+            <th>open</th>
+            <th>high</th>
+            <th>low</th>
+            <th>close</th>
+            <th>&nbsp;</th>
+        </tr>
                 </thead>
-            <tbody>
-            <tr>
-                <td>BirthTime : {{candle.birthTime}}</td>
-                <td>Volume:<input type="number" class="form-control" ng-model="candle.volume"></td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>ASK:</td>
-                <td><input class="form-control" ng-model="candle.ask.open"></td>
-                <td><input class="form-control" ng-model="candle.ask.high"></td>
-                <td><input class="form-control" ng-model="candle.ask.low"></td>
-                <td><input class="form-control" ng-model="candle.ask.close"></td>
-            </tr>
-            <tr>
-                <td>BID:</td>
-                <td><input class="form-control" ng-model="candle.bid.open"></td>
-                <td><input class="form-control" ng-model="candle.bid.high"></td>
-                <td><input class="form-control" ng-model="candle.bid.low"></td>
-                <td><input class="form-control" ng-model="candle.bid.close"></td>
-                <td><button class="btn btn-info" ng-click="update(candle)">update</button>
-            </tr>
+        <tbody>
+        <tr>
+            <td>BirthTime : {{candle.birthTime}}</td>
+            <td>Volume:<input type="number" class="form-control" ng-model="candle.volume"></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>ASK:</td>
+            <td><input class="form-control" ng-model="candle.ask.open"></td>
+            <td><input class="form-control" ng-model="candle.ask.high"></td>
+            <td><input class="form-control" ng-model="candle.ask.low"></td>
+            <td><input class="form-control" ng-model="candle.ask.close"></td>
+        </tr>
+        <tr>
+            <td>BID:</td>
+            <td><input class="form-control" ng-model="candle.bid.open"></td>
+            <td><input class="form-control" ng-model="candle.bid.high"></td>
+            <td><input class="form-control" ng-model="candle.bid.low"></td>
+            <td><input class="form-control" ng-model="candle.bid.close"></td>
+            <td><button class="btn btn-info" ng-click="update(candle)">update</button>
+        </tr>
             </tbody>
-        </table>
+    </table>
 
-        <table class="table">
-            <thead>
-            <tr>
-                <th>TYPE</th>
-                <th>open</th>
-                <th>high</th>
-                <th>low</th>
-                <th>close</th>
-                <th>&nbsp;</th>
-            </tr>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>TYPE</th>
+            <th>open</th>
+            <th>high</th>
+            <th>low</th>
+            <th>close</th>
+            <th>&nbsp;</th>
+        </tr>
                 </thead>
-            <tbody ng-repeat="candle in candleList">
-            <tr>
-                <td>BirthTime : {{candle.birthTime}}</td>
-                <td>Volume : {{candle.volume }}</td>
-            </tr>
-            <tr>
-                <td>ASK:</td>
-                <td>{{candle.ask.open}}</td>
-                <td>{{candle.ask.high}}</td>
-                <td>{{candle.ask.low}}</td>
-                <td>{{candle.ask.close}}</td>
-            </tr>
-            <tr>
-                <td>BID:</td>
-                <td>{{candle.bid.open}}</td>
-                <td>{{candle.bid.high}}</td>
-                <td>{{candle.bid.low}}</td>
-                <td>{{candle.bid.close}}</td>
-                <td><button class="btn btn-warning" ng-click="edit(candle.birthTime)">Edit</button></td>
-            </tr>
+        <tbody ng-repeat="candle in candleList">
+        <tr>
+            <td>BirthTime : {{candle.birthTime}}</td>
+            <td>Volume : {{candle.volume }}</td>
+        </tr>
+        <tr>
+            <td>ASK:</td>
+            <td>{{candle.ask.open}}</td>
+            <td>{{candle.ask.high}}</td>
+            <td>{{candle.ask.low}}</td>
+            <td>{{candle.ask.close}}</td>
+        </tr>
+        <tr>
+            <td>BID:</td>
+            <td>{{candle.bid.open}}</td>
+            <td>{{candle.bid.high}}</td>
+            <td>{{candle.bid.low}}</td>
+            <td>{{candle.bid.close}}</td>
+            <td><button class="btn btn-warning" ng-click="edit(candle.birthTime)">Edit</button></td>
+        </tr>
             </tbody>
-        </table>
+    </table>
 
+
+</div>
+</div>
+<div><pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+
+    <h4>Inline</h4>
+    <div style="display:inline-block; min-height:290px;">
+        <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm" custom-class="getDayClass(date, mode)"></datepicker>
     </div>
+
+    <h4>Popup</h4>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="input-group">
+                <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+
+        <div class="col-md-6">
+            <p class="input-group">
+                <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Format:</label> <select class="form-control" ng-model="format" ng-options="f for f in formats">
+                <option></option>
+            </select>
+        </div>
+    </div>
+
+    <hr />
+    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
+    <button type="button" class="btn btn-sm btn-default" ng-click="dt = '2009-08-24'">2009-08-24</button>
+    <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
+    <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" tooltip="After today restriction">Min date</button>
+
+    <timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+
+    <pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
+
+    <div class="row">
+        <div class="col-xs-6">
+        Hours step is:
+            <select class="form-control" ng-model="hstep" ng-options="opt for opt in options.hstep"></select>
+        </div>
+        <div class="col-xs-6">
+        Minutes step is:
+            <select class="form-control" ng-model="mstep" ng-options="opt for opt in options.mstep"></select>
+        </div>
+    </div>
+
+    <hr>
+
+    <button class="btn btn-info" ng-click="toggleMode()">12H / 24H</button>
+    <button class="btn btn-default" ng-click="update()">Set to 14:00</button>
+    <button class="btn btn-danger" ng-click="clear()">Clear</button>
+
 </div>
